@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MaxWidthWrapper from "./MaxWidWrapper";
-import { Menu } from "lucide-react";
+import { Menu, SquareX } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   {
@@ -136,16 +137,29 @@ const HeaderLoggedOut = () => {
           </ul>
         </div>
         <div className="flex gap-4">
-          <button className="bg-green-600 hidden md:block text-white px-4 md:px-12 py-1 md:py-2 rounded hover:bg-green-500">
+          <Link
+            to="/login"
+            className="bg-green-600 hidden md:block text-white px-4 md:px-12 py-1 md:py-2 rounded hover:bg-green-500"
+          >
             Log in
-          </button>
-          <button className="hidden md:block border rounded px-4 md:px-12 py-1 md:py-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
+          </Link>
+          <Link
+            to="/register"
+            className="hidden md:block border rounded px-4 md:px-12 py-1 md:py-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+          >
             Register
-          </button>
-          <Menu
-            className="text-green-800 hover:text-green-600 cursor-pointer md:hidden"
-            onClick={() => setShowLinks(!showLinks)}
-          />
+          </Link>
+          {showLinks ? (
+            <SquareX
+              className="text-green-800 hover:text-green-600 cursor-pointer"
+              onClick={() => setShowLinks(false)}
+            />
+          ) : (
+            <Menu
+              className="text-green-800 hover:text-green-600 cursor-pointer md:hidden"
+              onClick={() => setShowLinks(true)}
+            />
+          )}
         </div>
       </header>
     </MaxWidthWrapper>

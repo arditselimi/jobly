@@ -15,6 +15,7 @@ const Login = () => {
                 <input
                   placeholder="Email"
                   className="border w-full md:w-[400px] px-4 py-2 rounded mt-2 md:mt-4 outline-none focus:border-green-500 text-green-900"
+                  autoComplete="none"
                 />
               </div>
               <div>
@@ -22,6 +23,7 @@ const Login = () => {
                   type="password"
                   placeholder="Password"
                   className="border w-full md:w-[400px] px-4 py-2 rounded mt-2 md:mt-4 outline-none focus:border-green-500 text-green-900"
+                  autoComplete="none"
                 />
               </div>
               <button className="bg-green-800 w-full md:w-[400px] rounded py-2 text-white mt-4 hover:bg-green-600">

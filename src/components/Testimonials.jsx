@@ -41,7 +41,7 @@ const Testimonials = () => {
   }
 
   useEffect(() => {
-    const delay = 2000;
+    const delay = 5000;
 
     setTimeout(() => {
       nextSlide();
@@ -52,7 +52,7 @@ const Testimonials = () => {
 
   return (
     <MaxWidthWrapper>
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center gap-6 py-8 md:py-24">
         <span className="text-sm bg-green-100 px-2 py-1 shadow-xl text-green-800 rounded">
           What People Think
         </span>
@@ -68,7 +68,7 @@ const Testimonials = () => {
                 {activeId && (
                   <div
                     key={t.id}
-                    className="flex flex-col items-center gap-2 shadow px-8 py-6 rounded-md"
+                    className="flex flex-col items-center gap-2 shadow-lg px-8 py-6 rounded-md"
                   >
                     <img
                       src={t.imgSrc}

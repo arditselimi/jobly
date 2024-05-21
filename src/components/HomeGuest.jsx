@@ -3,6 +3,7 @@ import FeaturedJobs from "./FeaturedJobs";
 import HowItWorks from "./HowItWorks";
 import Faq from "./Faq";
 import Testimonials from "./Testimonials";
+import Blog from "./Blog";
 
 const HomeGuest = () => {
   return (
@@ -57,6 +58,7 @@ const HomeGuest = () => {
       <FeaturedJobs />
       <Faq />
       <Testimonials />
+      <Blog />
     </>
   );
 };

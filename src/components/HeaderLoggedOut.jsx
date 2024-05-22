@@ -18,28 +18,10 @@ const navLinks = [
     id: 3,
     label: "Categories",
     url: "/categories",
-    sublinks: [
-      {
-        id: 3.1,
-        label: "Development",
-        url: "/categories/development",
-      },
-      {
-        id: 3.2,
-        label: "Design",
-        url: "/categories/design",
-      },
-      {
-        id: 3.3,
-        label: "Project Management",
-        url: "/categories/project-management",
-      },
-    ],
   },
 ];
 
 const HeaderLoggedOut = () => {
-  const [showSubmenu, setShowSubmenu] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -78,14 +60,14 @@ const HeaderLoggedOut = () => {
       <header className="flex items-center justify-between">
         <div>
           <h2 className="font-light text-green-700 text-xl">
-            <a href="/">Jobly</a>
+            <Link to="/">Jobly</Link>
           </h2>
         </div>
-        <div>
+        <div onClick={() => setShowLinks(false)}>
           <ul
             className={
               showLinks
-                ? "block  bg-white absolute top-12 left-[50%] translate-x-[-50%] border w-full flex flex-col gap-2 items-center"
+                ? "block  bg-white absolute top-14 left-[50%] translate-x-[-50%] border w-full flex flex-col gap-2 items-center"
                 : "hidden md:flex gap-8"
             }
           >
@@ -99,47 +81,22 @@ const HeaderLoggedOut = () => {
                       : ""
                   }
                 >
-                  <a
-                    href="/"
+                  <Link
+                    to={link.url}
                     className="text-green-900 hover:text-green-600"
                     onMouseEnter={handleSubmenu}
                   >
                     {link.label}
-                  </a>
-
-                  {link.sublinks && (
-                    <ul
-                      className={
-                        showSubmenu
-                          ? " md:bg-white md:block md:absolute md:border md:rounded md:px-4 md:py-4 md:flex md:flex-col md:gap-2"
-                          : "hidden"
-                      }
-                      onMouseLeave={() => setShowSubmenu(false)}
-                    >
-                      {link.sublinks.map((sublink) => (
-                        <li
-                          key={sublink.id}
-                          className="bg-green-100 px-4 rounded mt-2 py-1 hover:bg-green-200"
-                        >
-                          <a
-                            href={sublink.url}
-                            className="text-green-800 px-2 py-1 "
-                          >
-                            {sublink.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  </Link>
                 </li>
               );
             })}
           </ul>
         </div>
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <Link
             to="/login"
-            className="bg-green-600 hidden md:block text-white px-4 md:px-12 py-1 md:py-2 rounded hover:bg-green-500"
+            className="bg-green-600  md:block text-white px-4 md:px-12 py-1 md:py-2 rounded hover:bg-green-500"
           >
             Log in
           </Link>

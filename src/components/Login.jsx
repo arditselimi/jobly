@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MaxWidthWrapper from "./MaxWidWrapper";
 
 const Login = () => {
@@ -30,6 +31,15 @@ const Login = () => {
                 Login
               </button>
             </form>
+            <span className="text-green-800 inline-block mt-5">
+              You dont't have an account?{" "}
+              <Link
+                to="/register"
+                className="underline hover:text-green-500 transition-all"
+              >
+                Register
+              </Link>
+            </span>
           </div>
         </div>
       </MaxWidthWrapper>

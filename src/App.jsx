@@ -6,10 +6,13 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
 import HomeGuest from "./components/HomeGuest";
-import HowItWorks from "./components/HowItWorks";
 import Jobs from "./pages/Jobs";
+import Apply from "./components/Apply";
+import Categories from "./pages/Categories";
 
 const App = () => {
+  const isActive = false;
+
   return (
     <BrowserRouter>
       <Header />
@@ -18,7 +21,9 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/categories" element={<Categories />} />
       </Routes>
+      {isActive && <Apply />}
       <Footer />
     </BrowserRouter>
   );

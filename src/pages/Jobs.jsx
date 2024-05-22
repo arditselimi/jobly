@@ -6,14 +6,14 @@ import SingleJob from "../components/SingleJob";
 const Jobs = () => {
   return (
     <>
-      <div className="bg-green-50 py-8">
+      <div className="bg-green-50 py-4">
         <MaxWidthWrapper>
           <SearchJobForm />
         </MaxWidthWrapper>
       </div>
 
       <MaxWidthWrapper>
-        <div className="flex flex-col gap-4 md:flex-row md:justify-between mt-6">
+        <div className="flex flex-col gap-4 md:flex-row md:justify-between mt-6 h-screen">
           <div className="basis-2/6">
             <JobBoard />
           </div>

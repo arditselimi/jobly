@@ -1,3 +1,5 @@
+import { ChevronDown } from "lucide-react";
+
 const allJobs = [
   {
     id: 1,
@@ -84,6 +86,15 @@ const allJobs = [
 const JobBoard = () => {
   return (
     <div>
+      <div className="flex justify-between items-center mb-4 px-4">
+        <p className="text-[12px]">125 React js jobs finded.</p>
+        <div className="flex gap-2 justify-between hover:bg-neutral-200 rounded-full cursor-pointer px-2">
+          <p className="text-[14px]">
+            <a>Most relevant</a>
+          </p>
+          <ChevronDown width={16} />
+        </div>
+      </div>
       <div className="flex flex-col gap-2">
         {allJobs.map((job) => {
           return (

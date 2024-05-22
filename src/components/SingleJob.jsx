@@ -16,10 +16,14 @@ const singleJob = {
 };
 
 const SingleJob = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
   return (
     <div className="w-full">
       <div className="w-full border rounded-lg border-neutral-200">
-        <div className="px-5 py-4">
+        <div key={singleJob.id} className="px-5 py-4">
           <div className="flex items-center gap-4">
             <img
               src={singleJob.logo}
@@ -66,7 +70,7 @@ const SingleJob = () => {
                 <ul className="mt-4 flex">
                   {singleJob.yourSkills.map((txt) => (
                     <li className="ml-6">
-                      <p className="inline font-normal bg-green-500 px-2 p-1 rounded text-white">
+                      <p className="inline font-normal border px-2 p-1 rounded  text-neutral-700">
                         {txt}
                       </p>
                     </li>
@@ -76,7 +80,10 @@ const SingleJob = () => {
             </div>
           </div>
 
-          <button className="bg-green-500 text-white w-full text-xl py-2 px-16 rounded inline-block mt-8 hover:bg-green-600 transition-all">
+          <button
+            className="bg-green-500 text-white w-full text-xl py-2 px-16 rounded inline-block mt-8 hover:bg-green-600 transition-all"
+            onClick={handleClick}
+          >
             Apply
           </button>
         </div>

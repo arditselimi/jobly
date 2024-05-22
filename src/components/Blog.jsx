@@ -35,7 +35,7 @@ const Blog = () => {
           </button>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-12 justify-between mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 justify-between mt-12">
           {blogPosts.map((post) => (
             <div
               key={post.id}

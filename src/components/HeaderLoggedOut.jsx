@@ -19,6 +19,11 @@ const navLinks = [
     label: "Categories",
     url: "/categories",
   },
+  {
+    id: 4,
+    label: "Post a job",
+    url: "/post-job",
+  },
 ];
 
 const HeaderLoggedOut = () => {

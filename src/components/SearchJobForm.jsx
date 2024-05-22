@@ -23,7 +23,7 @@ const SearchJobForm = () => {
       </div>
 
       <div className="mt-8">
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-3">
           <div className="bg-green-100 px-4 p-1 rounded-full">
             <SlidersHorizontal className="text-green-900 hover:text-green-700 cursor-pointer" />
           </div>

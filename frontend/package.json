@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@strapi/blocks-react-renderer": "^1.0.1",
     "axios": "^1.7.2",
     "immer": "^10.1.1",
     "lucide-react": "^0.378.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^8.0.6",
     "react-router-dom": "^6.23.1",
     "use-immer": "^0.9.0"
   },

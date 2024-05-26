@@ -1,38 +1,15 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
+
 import MaxWidthWrapper from "./MaxWidWrapper";
 
-const tst = [
-  {
-    id: 1,
-    imgSrc:
-      "https://assets.website-files.com/61139ac7385e74ae2ca2c6fd/6113dc40d989d6cb18ee9c69_team-4.jpg",
-    name: "John Doe",
-    job: "Designer at Slack",
-    text: "Amazing. Getting my job a week after applied here on Jobly. Give it a try, you will be amazed.",
-  },
-  {
-    id: 2,
-    imgSrc:
-      "https://assets.website-files.com/61139ac7385e74ae2ca2c6fd/6113dc40a4c62aae3e4fe14c_team-6.jpg",
-    name: "Jane Doe",
-    job: "Frontend Dev at Slack",
-    text: "Really great. I got my dreaaam job after applied here on Jobly. Really shocked, for good.",
-  },
-  {
-    id: 3,
-    imgSrc:
-      "https://assets.website-files.com/61139ac7385e74ae2ca2c6fd/6113dc3e97d71de2a1efd0e0_team-2.jpg",
-    name: "Lisa John",
-    job: "Designer at Slack",
-    text: "This is gold. Getting your dream job by justing applying here on Jobly looks a dream but it is reality. I have no idea why you are still waitinggg!",
-  },
-];
-
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeT, setActiveT] = useState(1);
 
   function nextSlide() {
-    if (activeT > tst.length - 1) {
+    if (activeT > testimonials.length - 1) {
       return setActiveT(1);
     }
 
@@ -47,7 +24,35 @@ const Testimonials = () => {
     }, delay);
 
     return () => clearTimeout(delay);
-  }, [activeT]);
+  }, [activeT, testimonials]);
+
+  useEffect(() => {
+    const token = import.meta.env.VITE_API_TOKEN;
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:1337/api/testimonials?populate=*",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setTestimonials(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <MaxWidthWrapper>
@@ -59,19 +64,24 @@ const Testimonials = () => {
           Testimonials
         </h2>
         <div>
-          {tst.map((t) => {
+          {testimonials.map((t) => {
             let activeId = activeT === t.id;
+
+            const { author, jobOfTheAuthor, review } = t.attributes;
+
+            const { url } =
+              t.attributes.imageOfAuthor.data.attributes.formats.small;
 
             return (
               <div key={t.id}>
                 {activeId && (
                   <div
                     key={t.id}
-                    className="flex flex-col items-center gap-2 shadow-lg px-8 py-6 rounded-md"
+                    className="flex flex-col items-center gap-2 shadow-lg px-8 py-6 rounded-md  h-[300px] w-[1000px]"
                   >
                     <img
-                      src={t.imgSrc}
-                      alt={t.name}
+                      src={`http://localhost:1337${url}`}
+                      alt={author}
                       className="rounded-full"
                       style={{
                         width: "50px",
@@ -81,13 +91,13 @@ const Testimonials = () => {
                     />
 
                     <p className="text-lg text-green-800 text-center md:text-2xl py-2">
-                      "{t.text}"
+                      "{review}"
                     </p>
                     <span className="text-green-800 font-bold text-sm">
-                      {t.name}
+                      {author}
                     </span>
                     <p className="text-green-800 font-semibold text-sm">
-                      {t.job}
+                      {jobOfTheAuthor}
                     </p>
                   </div>
                 )}

@@ -15,6 +15,7 @@ import PostJob from "./components/PostJob";
 // context
 import StateContext from "./StateContext";
 import DispatchContext from "./DispatchContext";
+import SinglePost from "./components/SinglePost";
 
 const App = () => {
   const isActive = false;
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/post-job" element={<PostJob />} />
+            <Route path="/single-post/:id" element={<SinglePost />} />
           </Routes>
           {isActive && <Apply />}
           <Footer />

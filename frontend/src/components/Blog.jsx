@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import MaxWidthWrapper from "./MaxWidWrapper";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -20,6 +23,37 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = import.meta.env.VITE_API_TOKEN;
+
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:1337/api/blogs?populate=*",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setPosts(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <MaxWidthWrapper>
       <div className="py-8 md:py-16">
@@ -36,31 +70,42 @@ const Blog = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 justify-between mt-12">
-          {blogPosts.map((post) => (
-            <div
-              key={post.id}
-              style={{
-                backgroundImage: `linear-gradient(rgba(26, 91, 7, 0.5), rgba(8, 43, 2, 0.5)), url(${post.imgSrc})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "none",
-                height: "300px",
-                width: "100%",
-              }}
-              className="rounded relative cursor-pointer hover:scale-105 hover:shadow-lg transition"
-            >
-              <h2 className="w-full absolute bottom-[25%] left-[50%] translate-x-[-50%] text-center text-3xl text-white px-4 font-bold">
-                <a href="/">{post.title.slice(0, 65)}</a>
-              </h2>
-              <div className="flex gap-4 font-bold text-sm absolute bottom-[55%] left-[50%] translate-x-[-50%]">
-                <span className="text-white">{post.createdDate}</span>
-                <span className="text-white">{post.category}</span>
-              </div>
-              <button className="absolute bottom-5 left-[50%] translate-x-[-50%] bg-white text-green-800 px-8 py-2 rounded hover:bg-green-800 hover:text-white">
-                Read more
-              </button>
-            </div>
-          ))}
+          {posts.map((post) => {
+            const { id } = post;
+            const { author, text, title, createdAt } = post.attributes;
+            const { url } =
+              post.attributes.thumbnail.data.attributes.formats.medium;
+
+            return (
+              <Link
+                to={`/single-post/${id}`}
+                key={id}
+                style={{
+                  backgroundImage: `linear-gradient(rgba(26, 91, 7, 0.5), rgba(8, 43, 2, 0.5)), url(http://localhost:1337${url})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "none",
+                  height: "300px",
+                  width: "100%",
+                }}
+                className="rounded relative cursor-pointer hover:scale-105 hover:shadow-lg transition"
+              >
+                <h2 className="w-full absolute bottom-[25%] left-[50%] translate-x-[-50%] text-center text-3xl text-white px-4 font-bold">
+                  <a href="/">{title.slice(0, 65)}</a>
+                </h2>
+                <div className="flex gap-4 font-bold text-sm absolute bottom-[55%] left-[50%] translate-x-[-50%]">
+                  <span className="text-white">{createdAt}</span>
+                  {/* <span className="text-white">{post.category}</span> */}
+                </div>
+                <Link
+                  to={`/single-post/${id}`}
+                  className="absolute bottom-5 left-[50%] translate-x-[-50%] bg-white text-green-800 px-8 py-2 rounded hover:bg-green-800 hover:text-white"
+                >
+                  Read more
+                </Link>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </MaxWidthWrapper>

@@ -33,12 +33,10 @@ const Hero = () => {
   });
 
   const topCategories = Object.entries(categoryCounts)
-    .filter(([category, count]) => category !== "Featured Jobs") // Exclude "Featured Jobs"
-    .sort((a, b) => b[1] - a[1]) // Sort by count in descending order
-    .slice(0, 3) // Get the top 3 categories
+    .filter(([category, count]) => category !== "Featured Jobs")
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
     .map(([category, count]) => category);
-
-  console.log(topCategories);
 
   return (
     <div className="py-12 md:py-32">

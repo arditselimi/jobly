@@ -20,7 +20,7 @@ const PostJob = () => {
         <div>
           <form>
             <div className="flex flex-col">
-              <label className="text-sm text-neutral-400">Company name</label>
+              <label className="text-sm text-neutral-800">Company name</label>
               <input
                 type="text"
                 placeholder="Enter the company name"
@@ -29,7 +29,7 @@ const PostJob = () => {
             </div>
 
             <div className="flex flex-col mt-5">
-              <label className="text-sm text-neutral-400">
+              <label className="text-sm text-neutral-800">
                 Company Overview
               </label>
               <textarea
@@ -42,7 +42,7 @@ const PostJob = () => {
             </div>
 
             <div className="flex flex-col mt-5">
-              <label className="text-sm text-neutral-400">Job title</label>
+              <label className="text-sm text-neutral-800">Job title</label>
               <input
                 type="text"
                 placeholder="Enter the job title"
@@ -51,7 +51,7 @@ const PostJob = () => {
             </div>
 
             <div className="flex flex-col mt-5">
-              <label className="text-sm text-neutral-400">
+              <label className="text-sm text-neutral-800">
                 Responsibilities:
               </label>
               <textarea
@@ -62,7 +62,7 @@ const PostJob = () => {
             </div>
 
             <div className="flex flex-col mt-5">
-              <label className="text-sm text-neutral-400">Required:</label>
+              <label className="text-sm text-neutral-800">Required:</label>
               <textarea
                 type="text"
                 placeholder="Ex: experience, degree..."
@@ -71,7 +71,7 @@ const PostJob = () => {
             </div>
 
             <div className="flex flex-col mt-5">
-              <label className="text-sm text-neutral-400">
+              <label className="text-sm text-neutral-800">
                 Must have skills:
               </label>
               <textarea
@@ -82,7 +82,7 @@ const PostJob = () => {
             </div>
 
             <div className="flex flex-col mt-5">
-              <label className="text-sm text-neutral-400">Job type</label>
+              <label className="text-sm text-neutral-800">Job type</label>
               <select className="mt-4 border px-4 py-2 rounded w-[250px] appearance-none outline-none">
                 <option value="remote">Remote</option>
                 <option value="hybrid">Hybrid</option>

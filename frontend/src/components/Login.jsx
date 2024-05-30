@@ -7,7 +7,7 @@ const Login = () => {
       <MaxWidthWrapper>
         <div className="flex flex-col text-center md:items-center">
           <h4 className="text-2xl md:text-4xl text-green-800 font-bold">
-            Create Account
+            Log in
           </h4>
 
           <div className="mt-2 md:mt-4">

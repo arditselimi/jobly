@@ -1,6 +1,29 @@
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const SearchJobForm = () => {
+const SearchJobForm = ({ handleRemote, onSalary }) => {
+  const [isRemote, setIsRemote] = useState(false);
+  const [filterSalary, setFilterSalary] = useState(false);
+
+  const [salaryValue, setSalaryValue] = useState(null);
+
+  const handleRemoteClick = () => {
+    setIsRemote(!isRemote);
+  };
+
+  const handleSalaryClick = () => {
+    setFilterSalary(!filterSalary);
+    setSalaryValue("high");
+  };
+
+  useEffect(() => {
+    handleRemote(isRemote);
+  }, [isRemote]);
+
+  useEffect(() => {
+    onSalary(salaryValue);
+  }, [salaryValue]);
+
   return (
     <>
       <div>
@@ -23,30 +46,25 @@ const SearchJobForm = () => {
       </div>
 
       <div className="mt-8">
-        <div className="flex flex-wrap gap-3">
-          <div className="bg-green-100 px-4 p-1 rounded-full">
-            <SlidersHorizontal className="text-green-900 hover:text-green-700 cursor-pointer" />
-          </div>
-          <div className="bg-green-100 px-4 p-1 rounded-full">
-            <p className="text-green-900 hover:text-green-700 cursor-pointer">
+        <div className="flex flex-wrap items-start gap-3">
+          <div
+            className={
+              isRemote
+                ? "bg-green-400 px-4 p-1 rounded-full"
+                : "bg-green-100 px-4 p-1 rounded-full"
+            }
+          >
+            <p
+              className={"text-green-900 hover:text-green-700 cursor-pointer"}
+              onClick={handleRemoteClick}
+            >
               Remote only
             </p>
-          </div>
-          <div className="bg-green-100 text-green-900 px-4 py-1 rounded-full hover:text-green-700 cursor-pointer">
-            <div className="flex gap-1">
-              <p>Filter Salary</p>
-              <ChevronDown style={{ width: "20px" }} />
-            </div>
-          </div>
-          <div className="bg-green-100 text-green-900 px-4 py-1 rounded-full hover:text-green-700 cursor-pointer">
-            <div className="flex gap-1">
-              <p>Date posted</p>
-              <ChevronDown style={{ width: "20px" }} />
-            </div>
           </div>
         </div>
       </div>
     </>
   );
 };
+
 export default SearchJobForm;

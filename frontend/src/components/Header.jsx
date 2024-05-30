@@ -53,11 +53,11 @@ const Header = () => {
   }, []);
 
   const handleShowLinks = (bool) => {
-    setShowLinks(bool);
+    setShowLinks(true);
   };
 
   const handleHideLinks = (bool) => {
-    setShowLinks(bool);
+    setShowLinks(false);
   };
 
   return (
@@ -98,16 +98,18 @@ const Header = () => {
           </ul>
         </div>
         <div className="flex items-center gap-4">
-          <HeaderLoggedOut
-            showLinks={showLinks}
-            handleShowLinks={handleShowLinks}
-            handleHideLinks={handleHideLinks}
-          />
+          <HeaderLoggedOut />
           <div>
             {showLinks ? (
-              <SquareX className="text-green-800 hover:text-green-600 cursor-pointer" />
+              <SquareX
+                className="text-green-800 hover:text-green-600 cursor-pointer"
+                onClick={handleHideLinks}
+              />
             ) : (
-              <Menu className="text-green-800 hover:text-green-600 cursor-pointer md:hidden" />
+              <Menu
+                className="text-green-800 hover:text-green-600 cursor-pointer md:hidden"
+                onClick={handleShowLinks}
+              />
             )}
           </div>
         </div>
